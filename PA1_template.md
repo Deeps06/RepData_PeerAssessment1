@@ -7,15 +7,19 @@ data <- read.csv("activity.csv")
 ```
 
 ## What is mean total number of steps taken per day?
- 
- The total number of steps taken per day
+
+The total number of steps taken per day
 ```{r}
 library(ggplot2)
 total.steps <- tapply(data$steps, data$date, FUN=sum, na.rm=TRUE)
 qplot(total.steps, binwidth=1000, xlab="Total number of steps taken per day")
 mean(total.steps, na.rm=TRUE)
 median(total.steps, na.rm=TRUE)
-```
+
+  ```
+  ![Plot of chunk- Assignment Plot 1.png](Rep data/Assignment Plot 1.png)
+  
+  ```
 
 ## What is the average daily activity pattern?
 
@@ -28,6 +32,10 @@ ggplot(data=averages, aes(x=interval, y=steps)) +
   geom_line() +
   xlab("5-minute Interval") +
   ylab("Average number of steps taken")
+```
+```
+![Plot of chunk- Assignment Plot 2.png](Rep data/Assignment Plot 2.png)
+
 ```
 The 5-minute interval contains the maximum number of steps
 
@@ -68,6 +76,10 @@ Now, using the filled data set, let's make a histogram of the total number of st
 ```{r}
 total.steps <- tapply(filled.data$steps, filled.data$date, FUN=sum)
 qplot(total.steps, binwidth=1000, xlab="Total number of steps taken per day")
+```
+![Plot of chunk- Assignment Plot 3.png](Rep data/Assignment Plot 3.png)
+
+```
 
 #Mean of total number of steps taken per day
 mean(total.steps)
@@ -107,4 +119,8 @@ on weekdays and weekends.
 averages <- aggregate(steps ~ interval + day, data=filled.data, mean)
 ggplot(averages, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) +
 xlab("5-minute interval") + ylab("Number of steps")
+```
+```
+![Plot of chunk- Assignment Plot 4.png](Rep data/Assignment Plot 4.png)
+
 ```
